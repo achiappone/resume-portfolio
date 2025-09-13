@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation,Navigate } from "react-router-dom";
 import { CssBaseline, AppBar, Toolbar, Typography, Container, IconButton } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
@@ -32,9 +32,13 @@ export default function App() {
 
       <Container sx={{ py: 4 }}>
         <Routes location={location}>
-          <Route path="/" element={<Home />} />
+          {/* redirect root to /home */}
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/resume" element={<Resume />} />
+          {/* catch-all -> home */}
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </Container>
     </ThemeProvider>
