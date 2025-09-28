@@ -15,7 +15,11 @@ export const resumeData = {
       dates: "2019–Present",
       bullets: [
         "Led engineering and docs for LED video wall tools.",
-        "Built internal apps for quoting and spec PDFs."
+        "Built internal apps for quoting and spec PDFs.",
+        "Led cross-functional teams to deliver products on time and on budget.",
+        "Liaised with customers and sales to gather requirements and feedback.",
+        "Led Software team using Agile methodologies.",
+        "Implemented life cycle processes to improve quality and efficiency."
       ],
     },
     {
