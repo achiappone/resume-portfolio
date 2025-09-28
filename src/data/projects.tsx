@@ -19,5 +19,11 @@ export const projects: Project[] = [
     description: "Resume site with PDF export and dark mode.",
     stack: ["React", "TypeScript", "MUI", "pdfmake"],
     repo: "https://github.com/achiappone/resume-portfolio"
+  },
+    {
+    title: "Task Manager",
+    description: "Simple Kanban with drag-and-drop and local save.",
+    stack: ["React", "TypeScript", "Zustand", "dnd-kit"],
+    repo: "https://github.com/achiappone/task-manager-lite"
   }
 ];
