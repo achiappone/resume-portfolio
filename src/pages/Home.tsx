@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 export default function Home() {
   return (
     <Box>
-      <Typography variant="h4" gutterBottom>Portfolio</Typography>
+      <Typography variant="h4" gutterBottom>About</Typography>
       <Typography>
         Anthony is a professional with several years experience. This experience includes technical field service and support, technical writing, product engineering, and product management.
         In recent years, Anthony has focused on software development, particularly in building user-friendly hardware and software products that solve real-world problems.
