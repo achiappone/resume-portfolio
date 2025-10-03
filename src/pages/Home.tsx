@@ -1,3 +1,4 @@
+// src/pages/Home.tsx
 import { Box, Typography } from "@mui/material";
 
 export default function Home() {
@@ -8,9 +9,12 @@ export default function Home() {
         Anthony is a professional with several years experience. This experience includes technical field service and support, technical writing, product engineering, and product management.
         In recent years, Anthony has focused on software development, particularly in building user-friendly hardware and software products that solve real-world problems.
       </Typography>
+
+      {/* Add an empty line by splitting into a new Typography */}
+      <Typography paragraph />
+
       <Typography paragraph>
         This portfolio showcases Anthony's software development projects. These are primarily
-        
         Front-end and full-stack projects focused on React, TypeScript, data visualization, and PDF export.
         
         Skills include: React, TypeScript, React Native, Node.js, MobX-State-Tree, MySQL, C++, C#, Python, Networking,
