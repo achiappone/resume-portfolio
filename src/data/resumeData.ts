@@ -7,7 +7,8 @@ export const resumeData = {
     "Developer focused on React, TypeScript, data visualization, and PDF export. Background in product management for pro lighting/video systems.",
   skills: [
     "React", "TypeScript", "React Native", "Node.js", "MobX-State-Tree", "MySQL", "C++", "C#", "Python", "Networking",
-    "Project Management", "Product Management", "Agile"],
+    "Project Management", "Product Management", "Agile", "Market Research", "Technical Writing"
+  ],
   experience: [
     {
       role: "Senior Product Manager",
