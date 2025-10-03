@@ -6,7 +6,7 @@ export default function Resume() {
     content: [
       { text: resumeData.name, style: "name" },
       { text: `${resumeData.title} • ${resumeData.location} • ${resumeData.email}`, margin: [0, 0, 0, 10] },
-      { text: resumeData.summary, margin: [0, 0, 0, 12] },
+      { text: resumeData.summary, style: "summary", margin: [0, 0, 0, 12] },
       { text: "Skills", style: "h2" },
       { ul: resumeData.skills, margin: [0, 0, 0, 12] },
       { text: "Experience", style: "h2" },
@@ -24,7 +24,8 @@ export default function Resume() {
     ],
     styles: {
       name: { fontSize: 20, bold: true, margin: [0, 0, 0, 6] },
-      h2: { fontSize: 14, bold: true, margin: [0, 8, 0, 4] }
+      h2: { fontSize: 14, bold: true, margin: [0, 8, 0, 4] },
+      summary: { fontSize: 10, lineHeight: 1.4 }
     },
     defaultStyle: { fontSize: 10 }
   });
