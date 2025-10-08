@@ -1,12 +1,14 @@
 // src/App.tsx
 import { useMemo, useState } from "react";
 import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
-import { CssBaseline, AppBar, Toolbar, Typography, Container, IconButton } from "@mui/material";
+import { CssBaseline, AppBar, Toolbar, Typography, IconButton } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import type { PaletteMode } from "@mui/material/styles";
-import Home from "./pages/Home";
+
+import PortfolioLayout from "./layouts/PortfolioLayout"; // <-- persistent left ribbon + tabs
+import Home from "./pages/Home";       // right-side "About" content
 import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
 
@@ -15,20 +17,17 @@ function getTheme(mode: PaletteMode) {
     palette: {
       mode,
       primary: { main: mode === "dark" ? "#e3b341" : "#b58300" },
-      background:
-        mode === "dark"
-          ? { default: "#0f1115", paper: "#161a22" }
-          : { default: "#fafafa", paper: "#ffffff" },
-      text:
-        mode === "dark"
-          ? { primary: "#e7eaf0", secondary: "#a9b0bd" }
-          : { primary: "#1d2433", secondary: "#4b5565" },
+      background: mode === "dark"
+        ? { default: "#0f1115", paper: "#161a22" }
+        : { default: "#fafafa", paper: "#ffffff" },
+      text: mode === "dark"
+        ? { primary: "#e7eaf0", secondary: "#a9b0bd" }
+        : { primary: "#1d2433", secondary: "#4b5565" },
       divider: mode === "dark" ? "rgba(227,179,65,0.18)" : "rgba(0,0,0,0.12)",
     },
     shape: { borderRadius: 16 },
     typography: {
-      fontFamily:
-        'Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif',
+      fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif',
     },
     components: {
       MuiCard: { styleOverrides: { root: { border: "1px solid rgba(227,179,65,0.12)" } } },
@@ -51,9 +50,10 @@ export default function App() {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Anthony Chiappone
           </Typography>
-          <NavLink to="/home">Home</NavLink>
-          <NavLink to="/projects">Projects</NavLink>
-          <NavLink to="/resume">Resume</NavLink>
+          {/* Top nav now points at the same routes rendered inside the layout */}
+          <TopNavLink to="/">Home</TopNavLink>
+          <TopNavLink to="/projects">Projects</TopNavLink>
+          <TopNavLink to="/resume">Resume</TopNavLink>
           <IconButton
             color="inherit"
             onClick={() => setMode((m) => (m === "light" ? "dark" : "light"))}
@@ -64,22 +64,32 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Routes location={location}>
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/home" replace />} />
-        </Routes>
-      </Container>
+      {/* No Container here — the layout handles its own width/padding */}
+      <Routes location={location}>
+        {/* Everything below shares the persistent left panel + tab strip */}
+        <Route path="/" element={<PortfolioLayout />}>
+          <Route index element={<Home />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="resume" element={<Resume />} />
+        </Route>
+
+        {/* Keep /home working as an alias */}
+        <Route path="/home" element={<Navigate to="/" replace />} />
+
+        {/* Catch-all */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </ThemeProvider>
   );
 }
 
-function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
+function TopNavLink({ to, children }: { to: string; children: React.ReactNode }) {
   const location = useLocation();
-  const active = location.pathname === to;
+  const isHome = to === "/";
+  const active = isHome
+    ? location.pathname === "/" || location.pathname === "/home"
+    : location.pathname.startsWith(to);
+
   return (
     <Typography
       component={Link}
