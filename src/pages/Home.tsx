@@ -2,10 +2,10 @@
 import { Box, Card, CardContent, LinearProgress, Stack, Typography } from "@mui/material";
 
 const services = [
-  { title: "Web Design", desc: "Clean, accessible UI with modern patterns." },
-  { title: "Web Development", desc: "React, TypeScript, Node, PDF workflows." },
+  { title: "Web Design", desc: "Clean, accessible UI with modern patterns, with a primary focus on mobile application design" },
+  { title: "Web Development", desc: "React, TypeScript, MobX-State-Tree, Node.js, PDF workflows, Databases (e.g. MySQL, PostgreSQL)." },
   { title: "Mobile Apps", desc: "React Native, state and storage, PDF export." },
-  { title: "Data & Docs", desc: "Dashboards, automation, and pdfmake exports." },
+  { title: "Data & Docs", desc: "Dashboards, automation, Analytics, and excel imports/exports, PDF exports." },
 ];
 const skills = [
   { name: "React / TypeScript", value: 90 },
