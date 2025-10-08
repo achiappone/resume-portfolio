@@ -41,7 +41,7 @@ export default function PortfolioLayout() {
                 <Stack direction="row" spacing={1}>
                   <IconButton href="https://github.com/achiappone" target="_blank" rel="noreferrer"><GitHubIcon /></IconButton>
                   <IconButton href="https://www.linkedin.com/in/anthonychiappone" target="_blank" rel="noreferrer"><LinkedInIcon /></IconButton>
-                  <IconButton href="mailto:achiappone@chauvetlighting.com"><MailOutlineIcon /></IconButton>
+                  <IconButton href="mailto:anthonychiappone@gmail.com"><MailOutlineIcon /></IconButton>
                 </Stack>
                 <Button fullWidth variant="outlined" href="/resume-portfolio"
                         sx={(t) => ({ borderColor: t.palette.primary.main, color: t.palette.primary.main })}>
