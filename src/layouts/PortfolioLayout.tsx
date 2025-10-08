@@ -32,7 +32,7 @@ export default function PortfolioLayout() {
               <Stack spacing={2} alignItems="center" textAlign="center">
                 <Avatar src={profileImage}
                         alt="Anthony Chiappone"
-                        sx={(t) => ({ width:120, height: 120, border: `2px solid ${t.palette.primary.main}` })} />
+                        sx={(t) => ({ width:150, height: 150, border: `2px solid ${t.palette.primary.main}` })} />
                 <Box>
                   <Typography variant="h6">Anthony Chiappone</Typography>
                   <Typography variant="body2" color="text.secondary">
