@@ -9,10 +9,10 @@ const services = [
 ];
 const skills = [
   { name: "React / TypeScript", value: 90 },
-  { name: "Node / APIs", value: 75 },
-  { name: "MobX-State-Tree", value: 80 },
+  { name: "Node.js / APIs", value: 75 },
+  { name: "MobX-State-Tree", value: 70 },
   { name: "MySQL", value: 70 },
-  { name: "Product Management", value: 90 },
+  { name: "Product Management", value: 100 },
 ];
 
 export default function Home() {
