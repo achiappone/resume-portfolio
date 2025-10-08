@@ -19,7 +19,7 @@ export default function Projects() {
             <CardActions>
               <Button size="small" href={p.repo} target="_blank" rel="noreferrer">GitHub</Button>
               {p.live && (
-                <Button size="small" href={p.live} target="_blank" rel="noreferrer">Live</Button>
+                <Button size="small" href={p.live} target="_blank" rel="noreferrer">Live Link</Button>
               )}
             </CardActions>
           </Card>
