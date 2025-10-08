@@ -24,6 +24,7 @@ export const projects: Project[] = [
     title: "Task Manager",
     description: "Simple Kanban with drag-and-drop and local save.",
     stack: ["React", "TypeScript", "Zustand", "dnd-kit"],
-    repo: "https://github.com/achiappone/task-manager-lite"
+    repo: "https://github.com/achiappone/task-manager-lite",
+    live: "https://achiappone.github.io/task-manager-lite/"
   }
 ];
