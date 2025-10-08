@@ -13,9 +13,7 @@ export default function PortfolioLayout() {
   const tabs = [
     { label: "About",     to: "/" },
     { label: "Resume",    to: "/resume" },
-    { label: "Portfolio", to: "/projects" }, // your projects page
-    { label: "Blog",      to: "/blog", disabled: true },
-    { label: "Contact",   to: "/contact", disabled: true },
+    { label: "Example Projects", to: "/projects" }, // your projects page
   ];
 
   const isActive = (to: string) =>
