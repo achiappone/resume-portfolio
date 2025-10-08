@@ -29,7 +29,7 @@ export default function PortfolioLayout() {
           <Card sx={{ background: "background.paper", boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
             <CardContent>
               <Stack spacing={2} alignItems="center" textAlign="center">
-                <Avatar src="/avatar.png"
+                <Avatar src="assets/profileImage.jpg"
                         sx={(t) => ({ width: 96, height: 96, border: `2px solid ${t.palette.primary.main}` })} />
                 <Box>
                   <Typography variant="h6">Anthony Chiappone</Typography>
