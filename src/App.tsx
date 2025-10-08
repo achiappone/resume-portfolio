@@ -47,13 +47,13 @@ export default function App() {
       <CssBaseline enableColorScheme />
       <AppBar position="sticky" color="default" enableColorOnDark sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Toolbar sx={{ gap: 2 }}>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          {/*<Typography variant="h6" sx={{ flexGrow: 1 }}>
             Anthony Chiappone
           </Typography>
           {/* Top nav now points at the same routes rendered inside the layout */}
-          <TopNavLink to="/">Home</TopNavLink>
-          <TopNavLink to="/projects">Projects</TopNavLink>
-          <TopNavLink to="/resume">Resume</TopNavLink>
+          {/*<TopNavLink to="/">Home</TopNavLink>*/}
+          {/*<TopNavLink to="/projects">Projects</TopNavLink>*/}
+          {/*<TopNavLink to="/resume">Resume</TopNavLink>*/}
           <IconButton
             color="inherit"
             onClick={() => setMode((m) => (m === "light" ? "dark" : "light"))}
