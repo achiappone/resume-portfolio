@@ -1,38 +1,37 @@
-💼 Anthony Chiappone — Resume Portfolio
+# 💼 Anthony Chiappone — Resume Portfolio
 
-This project is a personal portfolio website built with React, TypeScript, and Vite.
+This project is a **personal portfolio website** built with **React**, **TypeScript**, and **Vite**.  
 It showcases professional experience, technical skills, and software development projects in a clean, responsive layout.
 
-👉 Live Demo: https://achiappone.github.io/resume-portfolio
+👉 **Live Demo:** [https://achiappone.github.io/resume-portfolio](https://achiappone.github.io/resume-portfolio)
 
-🛠️ Tech Stack
+---
 
-Frontend Framework: React + TypeScript
+## 🛠️ Tech Stack
 
-Bundler & Dev Server: Vite
+- **Frontend Framework:** React + TypeScript  
+- **Bundler & Dev Server:** Vite  
+- **UI Components:** Material-UI (MUI)  
+- **PDF Generation:** pdfmake  
+- **Hosting:** GitHub Pages  
 
-UI Components: Material-UI (MUI)
+---
 
-PDF Generation: pdfmake
+## ⚙️ Features
 
-Hosting: GitHub Pages
+- Modern, minimal design with responsive layout  
+- Dynamic project cards with GitHub and Live links  
+- Resume download and print options  
+- About, Resume, and Projects sections  
+- ESLint and TypeScript configuration for clean, maintainable code  
 
-⚙️ Features
+---
 
-Modern, minimal design with responsive layout
-
-Dynamic project cards with GitHub and Live links
-
-Resume download and print options
-
-About, Resume, and Projects sections
-
-ESLint and TypeScript configuration for clean, maintainable code
-
-🚀 Getting Started
+## 🚀 Getting Started
 
 To run this project locally:
 
+```
 # Clone the repository
 git clone https://github.com/achiappone/resume-portfolio.git
 
@@ -44,12 +43,15 @@ npm install
 
 # Start the development server
 npm run dev
+```
 
+Then open [http://localhost:5173](http://localhost:5173) in your browser.
 
-Then open http://localhost:5173
- in your browser.
+---
 
-🧩 Project Structure
+## 🧩 Project Structure
+
+```
 resume-portfolio/
 ├── src/
 │   ├── components/      # Reusable UI components
@@ -60,13 +62,17 @@ resume-portfolio/
 ├── public/              # Static assets
 ├── package.json         # Dependencies and scripts
 └── vite.config.ts       # Vite configuration
+```
 
-🧹 Code Quality
+---
 
-The project uses ESLint and TypeScript strict mode for consistent, type-safe development.
+## 🧹 Code Quality
 
-Example of the ESLint setup for type-checked rules:
+The project uses **ESLint** and **TypeScript strict mode** for consistent, type-safe development.
 
+Example ESLint setup:
+
+```
 export default tseslint.config([
   globalIgnores(['dist']),
   {
@@ -83,20 +89,26 @@ export default tseslint.config([
     },
   },
 ]);
+```
 
+Optional React-specific lint rules:
 
-Optional React-specific lint rules can be added via:
-
+```
 npm install eslint-plugin-react-x eslint-plugin-react-dom --save-dev
+```
 
-📄 License
+---
 
-This project is open source and available under the MIT License
-.
+## 📄 License
 
-👤 Author
+This project is open source and available under the [MIT License](LICENSE).
 
-Anthony Chiappone
-Senior Product Manager | Software Developer
-LinkedIn https://www.linkedin.com/in/anthonychiappone
-Portfolio https://achiappone.github.io/resume-portfolio
+---
+
+## 👤 Author
+
+**Anthony Chiappone**  
+Senior Product Manager | Software Developer  
+
+- [LinkedIn](https://www.linkedin.com/in/anthonychiappone)  
+- [Portfolio](https://achiappone.github.io/resume-portfolio)
