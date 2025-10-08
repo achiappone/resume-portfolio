@@ -6,6 +6,7 @@ import { Outlet, Link as RouterLink, useLocation } from "react-router-dom";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import profileImage from "../assets/profileImage.jpg";
 
 export default function PortfolioLayout() {
   const location = useLocation();
@@ -29,7 +30,8 @@ export default function PortfolioLayout() {
           <Card sx={{ background: "background.paper", boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
             <CardContent>
               <Stack spacing={2} alignItems="center" textAlign="center">
-                <Avatar src="assets/profileImage.jpg"
+                <Avatar src={profileImage}
+                        alt="Anthony Chiappone"
                         sx={(t) => ({ width: 96, height: 96, border: `2px solid ${t.palette.primary.main}` })} />
                 <Box>
                   <Typography variant="h6">Anthony Chiappone</Typography>
@@ -62,13 +64,12 @@ export default function PortfolioLayout() {
               display: "flex", gap: 1, flexWrap: "wrap",
             })}
           >
-            {tabs.map(({ label, to, disabled }) => (
+            {tabs.map(({ label, to }) => (
               <Button
                 key={label}
                 size="small"
                 component={RouterLink}
                 to={to}
-                disabled={disabled}
                 variant={isActive(to) ? "outlined" : "text"}
                 sx={(t) => ({
                   borderColor: isActive(to) ? t.palette.primary.main : "transparent",
