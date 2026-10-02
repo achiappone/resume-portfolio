@@ -1,22 +1,18 @@
 // src/pages/Home.tsx  (About content only)
-import { Box, Card, CardContent, LinearProgress, Stack, Typography } from "@mui/material";
+import { Box, Card, CardContent, Chip, Stack, Typography } from "@mui/material";
 
-const services = [
-  { title: "Web Design", desc: "Clean, accessible UI with modern patterns, with a primary focus on mobile application design" },
-  { title: "Web Development", desc: "React, TypeScript, MobX-State-Tree, Node.js, PDF workflows, Databases (e.g. MySQL, PostgreSQL)." },
-  { title: "Mobile Apps", desc: "React Native, state and storage, PDF export." },
-  { title: "Data & Docs", desc: "Dashboards, automation, Analytics, and excel imports/exports, PDF exports." },
+const focusAreas = [
+  { title: "Mobile apps for hardware", desc: "React Native apps that configure and diagnose devices over Bluetooth LE and NFC, on iOS and Android." },
+  { title: "Protocols & control systems", desc: "DMX512, RDM (ANSI E1.20), Art-Net, sACN and OSC: the protocols professional lighting runs on." },
+  { title: "Embedded & IoT", desc: "ESP32 / ESP32-S3 firmware, sensors over I2C, RS-485, Raspberry Pi and CAN-bus integrations." },
+  { title: "Web tools & infrastructure", desc: "React + TypeScript tools, Node services, CI/CD with GitHub Actions, and self-hosted Linux infrastructure." },
 ];
-const skills = [
-  { name: "React / TypeScript", value: 90 },
-  { name: "Node.js", value: 60 },
-  { name: "APIs", value: 40 },
-  { name: "MobX-State-Tree", value: 70 },
-  { name: "MySQL", value: 70 },
-  { name: "Product Management", value: 95 },
-  { name: "2D / 3D CAD Design (Structural Design)", value: 50 },
-  { name: "Networking", value: 60 },
-  { name: "Technical Writing", value: 60 }
+const skillGroups = [
+  { name: "Languages", items: ["TypeScript", "JavaScript", "Python", "C/C++", "C#"] },
+  { name: "Frameworks", items: ["React", "React Native", "Node.js", "MobX-State-Tree", "Vite"] },
+  { name: "Protocols", items: ["DMX512", "RDM", "Art-Net", "sACN", "OSC", "BLE", "NFC", "NMEA 2000", "WebRTC"] },
+  { name: "Platforms & Ops", items: ["ESP32", "Raspberry Pi", "Linux", "Proxmox", "systemd", "Docker", "GitHub Actions"] },
+  { name: "Product", items: ["Product Management", "Agile Delivery", "Requirements", "QA / Test Planning", "Technical Writing"] },
 ];
 
 export default function Home() {
@@ -26,37 +22,23 @@ export default function Home() {
         <CardContent>
           <Typography variant="h4" gutterBottom>About</Typography>
           <Typography color="text.secondary" paragraph>
-            Anthony is a professional with several years experience. This experience includes technical field service and
-            support, technical writing, product engineering, and product management. In recent years, Anthony has focused
-            on software development, particularly in building user-friendly hardware and software products that solve
-            real-world problems. He is well organized and detail-oriented, with a strong work ethic and a commitment to
-            excellence.
+            I&apos;m a software engineer and senior product manager with 15 years at Chauvet Professional, where I
+            moved from technical writer to product engineer, product manager and senior product manager. I build
+            software that talks to hardware: mobile apps that configure lighting fixtures over Bluetooth LE and NFC,
+            RDM and DMX protocol support, ESP32 firmware, and the web tools and infrastructure around them.
           </Typography>
-
-          <Typography color="text.secondary" paragraph>
-            This portfolio showcases Anthony&apos;s software development projects. These are primarily front-end and
-            full-stack projects focused on React, TypeScript, data visualization, and PDF export.
-          </Typography>
-
-          <Typography color="text.secondary" paragraph>
-            Software Skills include: React, TypeScript, React Native, Node.js, MobX-State-Tree, MySQL, C++, C#, Python,
-            .NET, Networking. General Skills include: Project Management (Agile methodologies), Database Design, Product
-            Management, Market Research, and Technical Writing.
-          </Typography>
-
           <Typography color="text.secondary">
-            Additionally, Anthony has a background in product management for pro lighting/video systems. Anthony has
-            extensive experience leading cross-functional teams to deliver products on time and on budget. He has also
-            built internal apps for functional sales function purposes, and led software teams using Agile methodologies.
-            Anthony is passionate about the work he does and is always looking for new challenges and opportunities to
-            learn and grow.
+            I work on both sides of a product. I write requirements and run Agile delivery with the software team,
+            and I also ship code with that team: 35 merged pull requests on the UNRIVAL fixture-configuration app,
+            co-development of the RDM release for Connect FX and WellCom Server, plus front-end UI design and QA
+            across these products.
           </Typography>
         </CardContent>
       </Card>
 
-      {/* services grid */}
+      {/* focus areas */}
       <Box sx={{ display: "grid", gap: 2, gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, mb: 2 }}>
-        {services.map(s => (
+        {focusAreas.map(s => (
           <Card key={s.title} sx={{ background: "background.paper", boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
             <CardContent>
               <Typography variant="h6">{s.title}</Typography>
@@ -69,17 +51,14 @@ export default function Home() {
       {/* skills */}
       <Card sx={{ background: "background.paper", boxShadow: "0 10px 30px rgba(0,0,0,0.35)" }}>
         <CardContent>
-          <Typography variant="h6" gutterBottom>My Skills</Typography>
+          <Typography variant="h6" gutterBottom>Skills</Typography>
           <Stack spacing={2}>
-            {skills.map(s => (
-              <Box key={s.name}>
-                <Box sx={{ display: "flex", justifyContent: "space-between", mb: 0.5 }}>
-                  <Typography variant="body2">{s.name}</Typography>
-                  <Typography variant="body2" color="text.secondary">{s.value}%</Typography>
-                </Box>
-                <LinearProgress variant="determinate" value={s.value}
-                  sx={(t) => ({ background: "#202532", "& .MuiLinearProgress-bar": { backgroundColor: t.palette.primary.main } })}
-                />
+            {skillGroups.map(g => (
+              <Box key={g.name}>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 0.75 }}>{g.name}</Typography>
+                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                  {g.items.map(i => <Chip key={i} label={i} size="small" variant="outlined" />)}
+                </Stack>
               </Box>
             ))}
           </Stack>

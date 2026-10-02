@@ -32,6 +32,12 @@ export default function Projects() {
             }}
           >
             <CardContent>
+              <Chip
+                label={p.label}
+                size="small"
+                color={p.label === "Professional" ? "primary" : "default"}
+                sx={{ mb: 1 }}
+              />
               <Typography variant="h6">{p.title}</Typography>
               <Typography sx={{ mt: 1, mb: 1 }} color="text.secondary">
                 {p.description}
@@ -43,9 +49,15 @@ export default function Projects() {
               </Stack>
             </CardContent>
             <CardActions sx={{ pt: 0 }}>
-              <Button size="small" href={p.repo} target="_blank" rel="noreferrer">
-                GitHub
-              </Button>
+              {p.repo ? (
+                <Button size="small" href={p.repo} target="_blank" rel="noreferrer">
+                  GitHub
+                </Button>
+              ) : (
+                <Typography variant="caption" color="text.secondary" sx={{ px: 1 }}>
+                  Proprietary, code not public
+                </Typography>
+              )}
               {!!p.live && (
                 <Button size="small" href={p.live} target="_blank" rel="noreferrer">
                   Live Link
