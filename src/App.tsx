@@ -1,7 +1,7 @@
 // src/App.tsx
 import { useMemo, useState } from "react";
-import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
-import { CssBaseline, AppBar, Toolbar, Typography, IconButton } from "@mui/material";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { CssBaseline, AppBar, Toolbar, IconButton } from "@mui/material";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -80,28 +80,5 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </ThemeProvider>
-  );
-}
-
-function TopNavLink({ to, children }: { to: string; children: React.ReactNode }) {
-  const location = useLocation();
-  const isHome = to === "/";
-  const active = isHome
-    ? location.pathname === "/" || location.pathname === "/home"
-    : location.pathname.startsWith(to);
-
-  return (
-    <Typography
-      component={Link}
-      to={to}
-      color="inherit"
-      sx={{
-        textDecoration: "none",
-        borderBottom: active ? "2px solid currentColor" : "none",
-        pb: 0.25,
-      }}
-    >
-      {children}
-    </Typography>
   );
 }

@@ -1,8 +1,12 @@
 import { Box, Button, Typography, Stack, Chip } from "@mui/material";
+import type { Content, TDocumentDefinitions } from "pdfmake/interfaces";
 import { resumeData } from "../data/resumeData";
 
+type PdfMake = typeof import("pdfmake/build/pdfmake");
+type Interop<T> = T & { default?: T };
+
 export default function Resume() {
-  const buildDoc = () => ({
+  const buildDoc = (): TDocumentDefinitions => ({
     content: [
       { text: resumeData.name, style: "name" },
       { text: `${resumeData.title} • ${resumeData.location} • ${resumeData.email}`, margin: [0, 0, 0, 12] },
@@ -10,17 +14,17 @@ export default function Resume() {
       { text: "Skills", style: "h2" },
       { ul: resumeData.skills, margin: [0, 0, 0, 14] },
       { text: "Experience", style: "h2" },
-      ...resumeData.experience.flatMap(exp => [
+      ...resumeData.experience.flatMap((exp): Content[] => [
         { text: `${exp.role} — ${exp.company} (${exp.dates})`, bold: true, margin: [0, 6, 0, 2] },
         { ul: exp.bullets, margin: [0, 0, 0, 10] }
       ]),
       { text: "Projects", style: "h2" },
-      ...resumeData.projects.flatMap(p => [
+      ...resumeData.projects.flatMap((p): Content[] => [
         { text: p.name, bold: true, margin: [0, 6, 0, 2] },
         { ul: p.bullets, margin: [0, 0, 0, 10] }
       ]),
       { text: "Education", style: "h2" },
-      ...resumeData.education.map(e => ({ text: `${e.school} — ${e.details}`, margin: [0, 2, 0, 2] }))
+      ...resumeData.education.map((e): Content => ({ text: `${e.school} — ${e.details}`, margin: [0, 2, 0, 2] }))
     ],
     styles: {
       name: { fontSize: 20, bold: true, margin: [0, 0, 0, 8] },
@@ -33,15 +37,17 @@ export default function Resume() {
   const loadPdfMake = async () => {
     const pdfMakeModule = await import("pdfmake/build/pdfmake");
     const pdfFontsModule = await import("pdfmake/build/vfs_fonts");
-    const pdfMake = (pdfMakeModule as any).default ?? (pdfMakeModule as any);
-    const fonts = (pdfFontsModule as any).default ?? (pdfFontsModule as any);
-    (pdfMake as any).vfs = fonts.pdfMake ? fonts.pdfMake.vfs : fonts.vfs;
+    // CJS/ESM interop: Vite may hand back either the module or { default: module }
+    const pdfMake = (pdfMakeModule as Interop<PdfMake>).default ?? pdfMakeModule;
+    const fonts = pdfFontsModule as Interop<{ pdfMake?: { vfs: PdfMake["vfs"] }; vfs?: PdfMake["vfs"] }>;
+    const f = fonts.default ?? fonts;
+    pdfMake.vfs = f.pdfMake ? f.pdfMake.vfs : f.vfs!;
     return pdfMake;
   };
 
   const downloadPdf = async () => {
     const pdfMake = await loadPdfMake();
-    (pdfMake as any).createPdf(buildDoc()).download("Anthony_Chiappone_Resume.pdf");
+    pdfMake.createPdf(buildDoc()).download("Anthony_Chiappone_Resume.pdf");
   };
 
   const previewPdf = async () => {
@@ -52,11 +58,11 @@ export default function Resume() {
     }
     try {
       const pdfMake = await loadPdfMake();
-      (pdfMake as any).createPdf(buildDoc()).open({}, win);
-    } catch (e) {
+      pdfMake.createPdf(buildDoc()).open({}, win);
+    } catch {
       try {
         const pdfMake = await loadPdfMake();
-        (pdfMake as any).createPdf(buildDoc()).getBlob((blob: Blob) => {
+        pdfMake.createPdf(buildDoc()).getBlob((blob: Blob) => {
           const url = URL.createObjectURL(blob);
           win.location = url;
         });
