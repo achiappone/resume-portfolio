@@ -16,9 +16,9 @@ export const resumeData = {
       company: "Chauvet Professional",
       dates: "2019–Present",
       bullets: [
-        "Engineer on UNRIVAL, a React Native fixture-configuration app (BLE + NFC): 35 merged PRs covering NFC tag memory mapping, BLE firmware-update verification, diagnostics, encrypted job PINs and Android/iOS parity.",
-        "Co-developed the Connect FX / WellCom Server 5.0.0 release adding RDM (ANSI E1.20) across app and gateway; front-end UI design and QA test planning.",
-        "Front-end UI and QA for ChamSys Systems Builder, a sales-enablement system-diagram tool.",
+        "Engineer on an NFC/BLE fixture-configuration app (React Native, iOS and Android): 35 merged PRs covering NFC tag memory mapping, BLE firmware updates with verification, diagnostics reporting, secured job data and platform parity.",
+        "Co-developed RDM (ANSI E1.20) support for a fixture-control app and its SBC-based wireless DMX gateway; front-end UI design and QA test planning.",
+        "Front-end UI and QA for a lighting-control system designer, a sales-enablement web tool for drawing complete system diagrams.",
         "Led engineering and docs for LED video wall tools.",
         "Built internal apps for quoting and spec PDFs.",
         "Led cross-functional teams to deliver products on time and on budget.",
@@ -55,9 +55,9 @@ export const resumeData = {
     }
   ],
   projects: [
-    { name: "DMX Haze Regulator", bullets: ["ESP32-S3 closed-loop control: PM2.5 sensor over I2C drives DMX512 output; web UI, OTA, watchdog."] },
+    { name: "Particle Analyzer & Doser", bullets: ["ESP32-S3 closed-loop control: PM2.5 particle sensor over I2C drives DMX512 dosing output; web UI, OTA, watchdog."] },
     { name: "K2 Plus Dashboard", bullets: ["Stdlib-only Python proxy dashboard for Klipper/Moonraker with in-browser WebRTC camera negotiation."] },
-    { name: "pve-stack", bullets: ["Proxmox self-hosted infrastructure: ops dashboard, metrics exporter, camera relay, CI deploys, network failover."] },
+    { name: "Development Dashboard", bullets: ["Remote and performance monitoring for a self-hosted dev server: live host metrics, service health, camera feeds, one-click deploys, network failover."] },
     { name: "OpenMarine Pi", bullets: ["Raspberry Pi boat computer: Signal K, NMEA 2000 over CAN, configuration deployed with Ansible."] },
     { name: "NVWAPP", bullets: ["React Native LED video-wall planner generating PDF drawings and bill of materials."] }
   ],

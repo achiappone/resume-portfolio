@@ -9,35 +9,36 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "UNRIVAL — Fixture Configuration App",
+    title: "NFC/BLE — Fixture Configuration App",
     label: "Professional",
     description:
-      "Chauvet Professional's iOS/Android app for configuring and diagnosing fixtures over NFC and Bluetooth LE. " +
-      "35 merged PRs: NFC tag memory mapping to the company spec, BLE firmware-update gating and verification, " +
-      "diagnostics report rework, encrypted job PINs, MVR IP patching, Android/iOS parity. Proprietary code.",
+      "Cross-platform mobile app that configures and diagnoses professional lighting fixtures over NFC and " +
+      "Bluetooth LE, including fixtures that are not yet powered. 35 merged PRs: NFC tag memory mapping, " +
+      "BLE firmware updates with verification, diagnostics reporting, secured job data and iOS/Android parity. Proprietary code."
     stack: ["React Native", "TypeScript", "MobX-State-Tree", "BLE", "NFC"],
   },
   {
-    title: "Connect FX & WellCom Server — RDM Release",
+    title: "Wireless DMX Gateway — RDM Support",
     label: "Professional",
     description:
-      "Fixture control app and its wireless gateway server. Co-developed the 5.0.0 release that added RDM " +
-      "(ANSI E1.20) across app and gateway; front-end UI design and much of the QA test planning. Proprietary code.",
-    stack: ["React Native", "TypeScript", "Node.js", "RDM", "DMX512"],
+      "A fixture-control app and the SBC-based wireless DMX gateway it talks to. Co-developed RDM " +
+      "(ANSI E1.20) support across app and gateway: device addressing, protocol alignment and wireless " +
+      "link reliability. Front-end UI design and much of the QA test planning. Proprietary code.",
+    stack: ["React Native", "TypeScript", "Node.js", "SBC / embedded Linux", "RDM", "DMX512"],
   },
   {
-    title: "ChamSys Systems Builder",
+    title: "Lighting-Control System Designer",
     label: "Professional",
     description:
-      "Sales-enablement web tool for drawing complete lighting-control system diagrams with ChamSys/Chauvet " +
-      "products. Team development with a focus on front-end UI design and QA. Proprietary code.",
+      "Sales-enablement web tool that lets sales and support teams draw complete lighting-control system " +
+      "diagrams from a product catalogue. Team development with a focus on front-end UI design and QA. Proprietary code.",
     stack: ["React", "TypeScript", "Vite"],
   },
   {
-    title: "DMX Haze Regulator",
+    title: "Particle Analyzer & Doser",
     label: "Personal",
     description:
-      "Closed-loop haze control: a PM2.5 sensor over I2C drives DMX512 output to haze machines. " +
+      "Closed-loop particle control: a PM2.5 particle sensor over I2C drives DMX512 dosing output. " +
       "Live web UI with charts, OTA updates, watchdog.",
     stack: ["ESP32-S3", "C++", "I2C", "DMX512"],
     repo: "https://github.com/achiappone/DMX_Haze_Regulator",
@@ -52,11 +53,11 @@ export const projects: Project[] = [
     repo: "https://github.com/achiappone/k2plus-dashboard",
   },
   {
-    title: "pve-stack",
+    title: "Development Dashboard",
     label: "Personal",
     description:
-      "Self-hosted infrastructure on Proxmox: ops dashboard, host metrics exporter, WebRTC→MJPEG camera relay, " +
-      "deploy tooling and network failover.",
+      "Remote and performance monitoring for a self-hosted development server: live host metrics, service " +
+      "health, camera feeds, one-click deploys and automatic network failover.",
     stack: ["TypeScript", "Python", "Bash", "systemd", "Proxmox"],
     repo: "https://github.com/achiappone/pve-stack",
   },

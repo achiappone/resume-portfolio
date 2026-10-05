@@ -29,8 +29,8 @@ export default function Home() {
           </Typography>
           <Typography color="text.secondary">
             I work on both sides of a product. I write requirements and run Agile delivery with the software team,
-            and I also ship code with that team: 35 merged pull requests on the UNRIVAL fixture-configuration app,
-            co-development of the RDM release for Connect FX and WellCom Server, plus front-end UI design and QA
+            and I also ship code with that team: 35 merged pull requests on the NFC/BLE fixture-configuration app,
+            co-development of the RDM release for a fixture-control app and its SBC-based wireless gateway, plus front-end UI design and QA
             across these products.
           </Typography>
         </CardContent>
