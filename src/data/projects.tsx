@@ -14,7 +14,7 @@ export const projects: Project[] = [
     description:
       "Cross-platform mobile app that configures and diagnoses professional lighting fixtures over NFC and " +
       "Bluetooth LE, including fixtures that are not yet powered. 35 merged PRs: NFC tag memory mapping, " +
-      "BLE firmware updates with verification, diagnostics reporting, secured job data and iOS/Android parity. Proprietary code."
+      "BLE firmware updates with verification, diagnostics reporting, secured job data and iOS/Android parity. Proprietary code.",
     stack: ["React Native", "TypeScript", "MobX-State-Tree", "BLE", "NFC"],
   },
   {
