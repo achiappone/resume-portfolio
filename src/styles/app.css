@@ -184,7 +184,8 @@ button { font: inherit; color: inherit; }
 .ledger-links a:hover { border-color: var(--hot); }
 
 /* ---------- résumé ---------- */
-.summary { font-size: 19px; line-height: 1.6; color: var(--ink); max-width: 68ch; margin-top: calc(var(--s-5) * -1); }
+.resume-intro { display: grid; gap: var(--s-5); margin-top: calc(var(--s-5) * -1); }
+.summary { font-size: 19px; line-height: 1.6; color: var(--ink); max-width: 68ch; }
 .resume-block { display: grid; gap: var(--s-5); }
 .roles { display: grid; border-top: 1px solid var(--rule); }
 .role { display: grid; grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); gap: var(--s-3) var(--s-6); padding-block: var(--s-5); border-bottom: 1px solid var(--rule); }
@@ -246,3 +247,6 @@ button { font: inherit; color: inherit; }
   .chain-item.is-active::after { background: linear-gradient(var(--hot), var(--hot)) no-repeat, rgba(255,122,26,.35); background-size: 2px 30%; animation: rail 1.4s var(--ease) infinite; }
   @keyframes rail { from { background-position: 0 -40%; } to { background-position: 0 140%; } }
 }
+
+/* Tiny phones: reserve the same subtitle height on every page so headers never differ. */
+@media (max-width: 340px) { .page-lede { min-height: 6.4em; } }

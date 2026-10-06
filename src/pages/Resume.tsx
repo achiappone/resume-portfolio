@@ -19,14 +19,16 @@ export default function Resume() {
             <p className="page-lede">{resumeData.title} · {resumeData.location}</p>
           </div>
         </div>
+      </header>
+
+      <div className="resume-intro">
         <div className="actions">
           <button type="button" className="btn btn-primary" onClick={download}><DownloadIcon />Download PDF</button>
           <button type="button" className="btn" onClick={preview}><EyeIcon />Preview</button>
           {error && <p className="form-error" role="alert">{error}</p>}
         </div>
-      </header>
-
-      <p className="summary">{resumeData.summary}</p>
+        <p className="summary">{resumeData.summary}</p>
+      </div>
 
       <section className="resume-block" aria-labelledby="exp-h">
         <h2 id="exp-h" className="section-title">Experience</h2>

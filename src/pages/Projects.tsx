@@ -15,7 +15,7 @@ export default function Projects() {
           <Headshot className="headshot-sm" />
           <div className="page-head">
             <h1 className="display display-sm">Work</h1>
-            <p className="page-lede">Software for professional lighting at work, and hardware-adjacent projects on my own time.</p>
+            <p className="page-lede">Lighting software at work, hardware projects at home.</p>
           </div>
         </div>
       </header>
