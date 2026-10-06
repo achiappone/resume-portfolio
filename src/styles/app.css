@@ -11,6 +11,7 @@
   --net: #6b97ff;
   --dmx: #f2a516;
   --ble: #b196ff;
+  --cloud: #4fd1dc;
   --hot: #ff7a1a;
   --hot-ink: #1a0d03;
   --go: #3ccf74;
@@ -97,7 +98,9 @@ button { font: inherit; color: inherit; }
 .headshot { aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 12px 32px -12px rgba(0,0,0,.6); }
 .hero-photo { grid-area: photo; justify-self: end; width: 168px; height: 168px; }
 .headshot-sm { width: 104px; height: 104px; }
-.page-head-id { display: flex; align-items: center; gap: var(--s-5); }
+/* Photo pinned to the top of the title so it sits in the same place on every page. */
+.page-head-id { display: flex; align-items: flex-start; gap: var(--s-5); }
+.page-head-split { align-items: start; }
 .hero-text { display: grid; gap: var(--s-4); }
 .hero .display { margin-bottom: var(--s-1); }
 .hero-role { font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; color: var(--ink); }
@@ -112,6 +115,18 @@ button { font: inherit; color: inherit; }
 .wire-net { stroke: var(--net); }
 .wire-dmx { stroke: var(--dmx); }
 .wire-ble { stroke: var(--ble); stroke-dasharray: 6 6; }
+.wire-cloud { stroke: var(--cloud); stroke-dasharray: 2 7; opacity: .7; }
+.cloud-glyph { fill: none; stroke: var(--cloud); stroke-width: 1.6; stroke-linejoin: round; }
+.node .cloud-glyph { pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  /* Data is always moving to and from the cloud, lit or not. */
+  .wire-cloud { animation: stream 1.6s linear infinite; }
+  .wire-cloud.is-lit { animation-duration: .8s; }
+  .node:has(.cloud-glyph) rect { animation: breathe 3.2s ease-in-out infinite; }
+  .node.is-active:has(.cloud-glyph) rect { animation: none; }
+}
+@keyframes stream { to { stroke-dashoffset: -18; } }
+@keyframes breathe { 0%, 100% { stroke: var(--rule); } 50% { stroke: var(--cloud); } }
 .wire.is-lit { stroke: var(--hot); stroke-width: 3.5; opacity: 1; }
 .wire-label { font: 500 11px var(--f-mono); fill: var(--muted); letter-spacing: .02em; }
 .pulse { fill: #fff; filter: drop-shadow(0 0 5px var(--hot)); offset-rotate: 0deg; animation: travel 1.8s var(--ease) infinite; offset-distance: 0%; opacity: 0; }
@@ -131,6 +146,7 @@ button { font: inherit; color: inherit; }
 .lg-net::before { background: var(--net); }
 .lg-dmx::before { background: var(--dmx); }
 .lg-ble::before { background: repeating-linear-gradient(90deg, var(--ble) 0 5px, transparent 5px 9px); }
+.lg-cloud::before { background: repeating-linear-gradient(90deg, var(--cloud) 0 2px, transparent 2px 6px); }
 .flow-panel { border-left: 1px solid var(--rule); padding: var(--s-5); display: grid; gap: var(--s-3); align-content: start; background: var(--panel-2); min-width: 0; }
 .panel-title { font: 700 22px/1.2 var(--f-body); }
 .panel-body { color: var(--ink-2); font-size: 15px; }
@@ -142,6 +158,7 @@ button { font: inherit; color: inherit; }
 .kind-personal::before { background: var(--go); }
 .kind-protocols::before { background: var(--net); }
 .kind-hardware::before { background: var(--dmx); }
+.kind-infrastructure::before { background: var(--cloud); }
 
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tags li { font: 500 12.5px/1 var(--f-body); color: var(--ink-2); border: 1px solid var(--rule); background: var(--ground); padding: 6px 8px; border-radius: 4px; }

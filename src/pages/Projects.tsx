@@ -10,11 +10,13 @@ const GROUPS: { label: Project["label"]; title: string; note: string }[] = [
 export default function Projects() {
   return (
     <>
-      <header className="page-head page-head-id">
-        <Headshot className="headshot-sm" />
-        <div className="page-head">
-          <h1 className="display display-sm">Work</h1>
-          <p className="page-lede">Software for professional lighting at work, and hardware-adjacent projects on my own time.</p>
+      <header className="page-head page-head-split">
+        <div className="page-head-id">
+          <Headshot className="headshot-sm" />
+          <div className="page-head">
+            <h1 className="display display-sm">Work</h1>
+            <p className="page-lede">Software for professional lighting at work, and hardware-adjacent projects on my own time.</p>
+          </div>
         </div>
       </header>
 

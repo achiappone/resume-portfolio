@@ -1,7 +1,7 @@
 // The home-page signal-flow diagram: where each piece of work sits in a lighting-control system.
-// Coordinates are in the SVG's 760x400 viewBox.
+// Coordinates are in the SVG's 760x480 viewBox.
 
-export type WireKind = "net" | "dmx" | "ble";
+export type WireKind = "net" | "dmx" | "ble" | "cloud";
 
 export type SystemWire = { id: string; kind: WireKind; d: string; label?: { text: string; x: number; y: number } };
 
@@ -11,7 +11,8 @@ export type SystemNode = {
   sub: string;
   subIsProtocol?: boolean; // protocol subs are set in mono; names are not
   box: { x: number; y: number; w: number; h: number };
-  kind: "Professional" | "Personal" | "Protocols" | "Hardware";
+  kind: "Professional" | "Personal" | "Protocols" | "Hardware" | "Infrastructure";
+  shape?: "cloud";
   title: string;
   body: string;
   tags: string[];
@@ -26,9 +27,14 @@ export const wires: SystemWire[] = [
   { id: "net-srv", kind: "net", d: "M350 104 V200" },
   { id: "gw-fix", kind: "dmx", d: "M640 104 V236", label: { text: "DMX · RDM", x: 652, y: 176 } },
   { id: "haze-fix", kind: "dmx", d: "M400 290 H560", label: { text: "DMX512", x: 480, y: 280 } },
-  { id: "app-fix", kind: "ble", d: "M150 312 C 270 372, 450 372, 572 320", label: { text: "NFC · BLE", x: 360, y: 382 } },
+  { id: "app-fix", kind: "ble", d: "M150 312 C 270 372, 450 372, 572 320", label: { text: "NFC · BLE", x: 240, y: 370 } },
   { id: "app-gw", kind: "ble", d: "M110 262 C 170 170, 420 150, 540 104" },
   { id: "design-net", kind: "net", d: "M380 104 V184 H450" },
+  // Remote access: each of these is reached through the cloud; the two controllers still run local control.
+  { id: "cloud-console", kind: "cloud", d: "M30 80 H14 V435 H300", label: { text: "HTTPS · tunnel", x: 160, y: 427 } },
+  { id: "cloud-haze", kind: "cloud", d: "M325 314 V410" },
+  { id: "cloud-srv", kind: "cloud", d: "M415 224 H430 V410" },
+  { id: "cloud-design", kind: "cloud", d: "M520 208 V410" },
 ];
 
 export const nodes: SystemNode[] = [
@@ -51,10 +57,10 @@ export const nodes: SystemNode[] = [
   {
     id: "console", name: "Console", sub: "Office Lighting", box: { x: 30, y: 56, w: 120, h: 48 },
     kind: "Personal", title: "Office Lighting",
-    body: "A web app that runs an office lighting rig from any phone or laptop, beside the lighting console: executors and faders over OSC, saved looks recorded as console cues, fixture management over RDM, and a throttled sign-in.",
+    body: "A web app that runs an office lighting rig from any phone or laptop, beside the lighting console: executors and faders over OSC, saved looks recorded as console cues, fixture management over RDM, and a throttled sign-in. Local control runs on site; remote access goes through the cloud.",
     tags: ["React", "TypeScript", "Node.js", "OSC", "RDM"],
     note: "Private repository for now.",
-    wires: ["console-net", "net-gw", "gw-fix"],
+    wires: ["console-net", "net-gw", "gw-fix", "cloud-console"],
   },
   {
     id: "net", name: "Network", sub: "Lighting LAN", box: { x: 300, y: 56, w: 100, h: 48 },
@@ -66,26 +72,26 @@ export const nodes: SystemNode[] = [
   {
     id: "design", name: "Design tool", sub: "System Designer", box: { x: 450, y: 160, w: 140, h: 48 },
     kind: "Professional", title: "Lighting-Control System Designer",
-    body: "A sales-enablement web tool that lets sales and support teams draw complete lighting-control system diagrams, like this one, from a product catalogue. Team development with a focus on front-end UI design and QA.",
+    body: "A sales-enablement web tool that lets sales and support teams draw complete lighting-control system diagrams, like this one, from a product catalogue. Team development with a focus on front-end UI design and QA. Cloud-hosted, so teams use it from anywhere.",
     tags: ["React", "TypeScript", "Vite"],
     note: "Proprietary, not linked.",
-    wires: ["design-net"],
+    wires: ["design-net", "cloud-design"],
   },
   {
     id: "srv", name: "Server", sub: "Dev Dashboard", box: { x: 285, y: 200, w: 130, h: 48 },
     kind: "Personal", title: "Development Dashboard",
-    body: "Remote and performance monitoring for a self-hosted development server: live host metrics, service health, camera feeds, one-click deploys and automatic network failover.",
+    body: "Remote and performance monitoring for a self-hosted development server: live host metrics, service health, camera feeds, one-click deploys and automatic network failover. Reached remotely through the cloud, with no inbound ports open on the host.",
     tags: ["TypeScript", "Python", "Bash", "systemd", "Proxmox"],
     link: { href: "https://github.com/achiappone/pve-stack", text: "View the code" },
-    wires: ["net-srv"],
+    wires: ["net-srv", "cloud-srv"],
   },
   {
     id: "haze", name: "ESP32 controller", sub: "Particle Analyzer", box: { x: 250, y: 266, w: 150, h: 48 },
     kind: "Personal", title: "Particle Analyzer & Doser",
-    body: "Closed-loop particle control on an ESP32-S3: a PM2.5 particle sensor over I2C drives DMX512 dosing output. Live web UI with charts, over-the-air updates and a watchdog.",
+    body: "Closed-loop particle control on an ESP32-S3: a PM2.5 particle sensor over I2C drives DMX512 dosing output. Live web UI with charts, over-the-air updates and a watchdog. Local control runs on the controller itself; remote monitoring and tuning go through the cloud.",
     tags: ["ESP32-S3", "C++", "I2C", "DMX512"],
     link: { href: "https://github.com/achiappone/DMX_Haze_Regulator", text: "View the code" },
-    wires: ["haze-fix"],
+    wires: ["haze-fix", "cloud-haze"],
   },
   {
     id: "fix", name: "Fixtures", sub: "DMX · RDM · NFC · BLE", subIsProtocol: true, box: { x: 560, y: 236, w: 160, h: 84 },
@@ -93,5 +99,12 @@ export const nodes: SystemNode[] = [
     body: "Every signal ends at a fixture: configured by phone, addressed over RDM, driven over DMX. Fifteen years at Chauvet Professional, from writing the manuals to product engineering, product management and the software that drives it.",
     tags: ["DMX512", "RDM", "NFC", "BLE"],
     wires: ["gw-fix", "haze-fix", "app-fix"],
+  },
+  {
+    id: "cloud", name: "Cloud", sub: "Remote access", box: { x: 300, y: 410, w: 240, h: 50 }, shape: "cloud",
+    kind: "Infrastructure", title: "Cloud access",
+    body: "Secure remote access to the tools. The Development Dashboard, the system designer, the Particle Analyzer and Office Lighting are all reachable from anywhere through encrypted tunnels, while the two controllers keep running local control on site.",
+    tags: ["HTTPS", "Cloudflare Tunnel", "Zero inbound ports", "Remote monitoring"],
+    wires: ["cloud-console", "cloud-srv", "cloud-design", "cloud-haze"],
   },
 ];

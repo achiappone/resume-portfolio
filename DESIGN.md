@@ -115,7 +115,7 @@ components:
 
 **Creative North Star: "The Console Panel"**
 
-The site is a dark lighting-control console: a near-black ground ruled by hairlines, with content laid out like a rack of labelled channels rather than a deck of cards. Colour is never decoration. It means something, the way it does on a patch bay: blue is network, amber is DMX, violet is wireless, and hot orange is the one path that is live right now. Everything else stays in a tight cool-grey ramp so the signal colours read instantly.
+The site is a dark lighting-control console: a near-black ground ruled by hairlines, with content laid out like a rack of labelled channels rather than a deck of cards. Colour is never decoration. It means something, the way it does on a patch bay: blue is network, amber is DMX, violet is wireless, cyan is cloud access, and hot orange is the one path that is live right now. Everything else stays in a tight cool-grey ramp so the signal colours read instantly.
 
 Density is calm and scannable. Sections are separated by space and single 1px rules, not by boxes; lists are ledgers (rows divided by rules) rather than grids of cards. The only framed object is the signal-flow diagram, which is the instrument the whole page is built around. A stencil display face, the kind stamped on road cases, carries the name and section heads; a plain grotesk does all the reading; mono appears only where a protocol is named.
 
@@ -141,6 +141,7 @@ A restrained cool-neutral console with four semantic signal hues and one hot acc
 - **Network Blue** (net): network/Ethernet wires and the "protocols" kind marker.
 - **DMX Amber** (dmx): DMX line wires and the "hardware" kind marker.
 - **Wireless Violet** (ble): Bluetooth/NFC wires, always drawn dashed.
+- **Cloud Cyan** (cloud, #4fd1dc): remote-access links to the cloud, drawn dotted with data always streaming along them; the Cloud node is a pill whose outline breathes in this colour.
 
 ### Tertiary
 - **Go Green** (go): the "personal project" kind marker only.

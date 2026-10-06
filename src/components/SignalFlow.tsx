@@ -5,9 +5,9 @@ import { nodes, wires } from "../data/system";
 const ends = (wireId: string) => wireId.split("-");
 
 // Phone order for the stacked chain: operator side first, fixtures last.
-const CHAIN = ["design", "console", "net", "srv", "gw", "app", "haze", "fix"];
+const CHAIN = ["design", "console", "net", "srv", "gw", "app", "haze", "fix", "cloud"];
 // Signal type of each node's link in the chain, so the phone rail keeps the diagram's wire colours.
-const RAIL: Record<string, string> = { design: "net", console: "net", net: "net", srv: "net", gw: "dmx", app: "ble", haze: "dmx", fix: "dmx" };
+const RAIL: Record<string, string> = { design: "net", console: "net", net: "net", srv: "net", gw: "dmx", app: "ble", haze: "dmx", fix: "dmx", cloud: "cloud" };
 
 // The career as one lighting-control system. Selecting a node lights its signal path,
 // sends pulses along it, and opens the work that lives there in the side panel.
@@ -24,13 +24,13 @@ export default function SignalFlow() {
   return (
     <div className="flow">
       <div className="flow-stage">
-        <svg className="flow-svg" viewBox="0 0 760 400" role="group" aria-label="Signal-flow diagram of my work. Choose a node to see the project.">
+        <svg className="flow-svg" viewBox="0 0 760 480" role="group" aria-label="Signal-flow diagram of my work. Choose a node to see the project.">
           <defs>
             <pattern id="flow-grid" width="20" height="20" patternUnits="userSpaceOnUse">
               <path d="M20 0H0V20" fill="none" className="flow-grid-line" />
             </pattern>
           </defs>
-          <rect width="760" height="400" fill="url(#flow-grid)" />
+          <rect width="760" height="480" fill="url(#flow-grid)" />
 
           {wires.map((w) => (
             <path key={w.id} d={w.d} className={`wire wire-${w.kind}${litWires.has(w.id) ? " is-lit" : ""}`} />
@@ -52,7 +52,12 @@ export default function SignalFlow() {
             <g key={n.id} className={`node${n.id === active ? " is-active" : ""}`} transform={`translate(${n.box.x},${n.box.y})`}
               tabIndex={0} role="button" aria-pressed={n.id === active} aria-label={`${n.name}: ${n.title}`}
               onClick={() => setActive(n.id)} onMouseEnter={() => setActive(n.id)} onFocus={() => setActive(n.id)} onKeyDown={onKey(n.id)}>
-              <rect width={n.box.w} height={n.box.h} rx="6" />
+              <rect width={n.box.w} height={n.box.h} rx={n.shape === "cloud" ? n.box.h / 2 : 6} />
+              {n.shape === "cloud" && (
+                // Small cloud glyph, left of the label.
+                <path className="cloud-glyph" transform={`translate(${n.box.w / 2 - 74},${n.box.h / 2 - 10})`}
+                  d="M6 18h13a5 5 0 0 0 .6-9.96A7 7 0 0 0 6.2 9.5 4.3 4.3 0 0 0 6 18Z" />
+              )}
               <text className="node-name" x={n.box.w / 2} y={n.box.h / 2 - 3} textAnchor="middle">{n.name}</text>
               <text className={`node-sub${n.subIsProtocol ? " is-proto" : ""}`} x={n.box.w / 2} y={n.box.h / 2 + 13} textAnchor="middle">{n.sub}</text>
             </g>
@@ -76,7 +81,7 @@ export default function SignalFlow() {
         </ol>
 
         <div className="flow-legend" aria-hidden="true">
-          <span className="lg-net">Network</span><span className="lg-dmx">DMX line</span><span className="lg-ble">Wireless · NFC</span>
+          <span className="lg-net">Network</span><span className="lg-dmx">DMX line</span><span className="lg-ble">Wireless · NFC</span><span className="lg-cloud">Cloud access</span>
         </div>
       </div>
 
