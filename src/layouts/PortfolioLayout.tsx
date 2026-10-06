@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "../components/Icons";
 
@@ -10,17 +10,18 @@ const LINKS = {
 
 export default function PortfolioLayout() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  // Layout effect: the new page is scrolled to the top before the view transition snapshots it.
+  useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
 
   return (
     <div className="shell">
       <a className="skip" href="#main">Skip to content</a>
       <header className="topbar">
-        <NavLink to="/" className="brand" aria-label="Anthony Chiappone, home">A. Chiappone</NavLink>
+        <NavLink to="/" viewTransition className="brand" aria-label="Anthony Chiappone, home">A. Chiappone</NavLink>
         <nav className="nav" aria-label="Main">
-          <NavLink to="/" end>System</NavLink>
-          <NavLink to="/projects">Work</NavLink>
-          <NavLink to="/resume">Résumé</NavLink>
+          <NavLink to="/" end viewTransition>System</NavLink>
+          <NavLink to="/projects" viewTransition>Work</NavLink>
+          <NavLink to="/resume" viewTransition>Résumé</NavLink>
         </nav>
         <div className="social">
           <a href={LINKS.github} target="_blank" rel="noreferrer" aria-label="GitHub"><GitHubIcon /></a>

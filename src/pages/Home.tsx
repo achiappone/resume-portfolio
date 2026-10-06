@@ -34,7 +34,7 @@ export default function Home() {
       <section className="path" aria-labelledby="path-h">
         <div className="section-head">
           <h2 id="path-h" className="section-title">Career path</h2>
-          <Link className="text-link" to="/resume">Full résumé <ArrowIcon size={16} /></Link>
+          <Link className="text-link" to="/resume" viewTransition>Full résumé <ArrowIcon size={16} /></Link>
         </div>
         <ol className="path-list">
           {[...resumeData.experience].reverse().map((e) => (
