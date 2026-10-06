@@ -4,7 +4,7 @@ import SignalFlow from "../components/SignalFlow";
 import { ArrowIcon, DownloadIcon, GitHubIcon } from "../components/Icons";
 import { downloadPdf } from "../lib/resumePdf";
 import { resumeData } from "../data/resumeData";
-import profileImage from "../assets/profileImage-400.jpg";
+import Headshot from "../components/Headshot";
 
 export default function Home() {
   const [pdfError, setPdfError] = useState("");
@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <img className="hero-photo" src={profileImage} alt="Anthony Chiappone" width={400} height={400} />
+        <Headshot className="hero-photo" />
         <div className="hero-text">
           <h1 className="display">Anthony Chiappone</h1>
           <p className="hero-role">Software engineer for systems that drive light.</p>

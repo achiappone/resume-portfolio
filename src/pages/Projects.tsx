@@ -1,4 +1,5 @@
 import { projects, type Project } from "../data/projects";
+import Headshot from "../components/Headshot";
 
 const GROUPS: { label: Project["label"]; title: string; note: string }[] = [
   { label: "Professional", title: "Professional work", note: "Built at Chauvet Professional. The code is proprietary, so it is described here and not linked." },
@@ -9,9 +10,12 @@ const GROUPS: { label: Project["label"]; title: string; note: string }[] = [
 export default function Projects() {
   return (
     <>
-      <header className="page-head">
-        <h1 className="display display-sm">Work</h1>
-        <p className="page-lede">Software for professional lighting at work, and hardware-adjacent projects on my own time.</p>
+      <header className="page-head page-head-id">
+        <Headshot className="headshot-sm" />
+        <div className="page-head">
+          <h1 className="display display-sm">Work</h1>
+          <p className="page-lede">Software for professional lighting at work, and hardware-adjacent projects on my own time.</p>
+        </div>
       </header>
 
       {GROUPS.map((g) => {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { resumeData } from "../data/resumeData";
 import { downloadPdf, previewPdf } from "../lib/resumePdf";
 import { DownloadIcon, EyeIcon } from "../components/Icons";
+import Headshot from "../components/Headshot";
 
 export default function Resume() {
   const [error, setError] = useState("");
@@ -11,9 +12,12 @@ export default function Resume() {
   return (
     <>
       <header className="page-head page-head-split">
-        <div>
-          <h1 className="display display-sm">Résumé</h1>
-          <p className="page-lede">{resumeData.title} · {resumeData.location}</p>
+        <div className="page-head-id">
+          <Headshot className="headshot-sm" />
+          <div className="page-head">
+            <h1 className="display display-sm">Résumé</h1>
+            <p className="page-lede">{resumeData.title} · {resumeData.location}</p>
+          </div>
         </div>
         <div className="actions">
           <button type="button" className="btn btn-primary" onClick={download}><DownloadIcon />Download PDF</button>

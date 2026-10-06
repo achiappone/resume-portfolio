@@ -94,7 +94,10 @@ button { font: inherit; color: inherit; }
 .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "text photo" "text actions"; align-items: end; gap: var(--s-5) var(--s-6); }
 .hero-text { grid-area: text; }
 .hero .actions { grid-area: actions; justify-content: flex-end; }
-.hero-photo { grid-area: photo; justify-self: end; width: 168px; height: 168px; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 12px 32px -12px rgba(0,0,0,.6); }
+.headshot { aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 12px 32px -12px rgba(0,0,0,.6); }
+.hero-photo { grid-area: photo; justify-self: end; width: 168px; height: 168px; }
+.headshot-sm { width: 104px; height: 104px; }
+.page-head-id { display: flex; align-items: center; gap: var(--s-5); }
 .hero-text { display: grid; gap: var(--s-4); }
 .hero .display { margin-bottom: var(--s-1); }
 .hero-role { font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; color: var(--ink); }

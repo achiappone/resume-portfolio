@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "shx cp dist/index.html dist/404.html",
+    "postbuild": "shx cp dist/index.html dist/404.html && shx mkdir -p dist/projects dist/resume && shx cp dist/index.html dist/projects/index.html && shx cp dist/index.html dist/resume/index.html",
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "npm run build && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\" && gh-pages -d dist -b gh-pages"
