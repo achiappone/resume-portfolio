@@ -91,7 +91,10 @@ button { font: inherit; color: inherit; }
 .form-error { flex-basis: 100%; color: #ff9b8f; font-size: 14px; }
 
 /* ---------- hero ---------- */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--s-6); }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "text photo" "text actions"; align-items: end; gap: var(--s-5) var(--s-6); }
+.hero-text { grid-area: text; }
+.hero .actions { grid-area: actions; justify-content: flex-end; }
+.hero-photo { grid-area: photo; justify-self: end; width: 168px; height: 168px; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); box-shadow: 0 12px 32px -12px rgba(0,0,0,.6); }
 .hero-text { display: grid; gap: var(--s-4); }
 .hero .display { margin-bottom: var(--s-1); }
 .hero-role { font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; color: var(--ink); }
@@ -186,6 +189,9 @@ button { font: inherit; color: inherit; }
   .topbar { grid-template-columns: 1fr auto; }
   .nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; margin-left: calc(var(--s-3) * -1); }
   .hero, .page-head-split { grid-template-columns: 1fr; align-items: start; }
+  .hero { grid-template-areas: "photo" "text" "actions"; }
+  .hero-photo { justify-self: start; width: 112px; height: 112px; }
+  .hero .actions { justify-content: flex-start; }
   .flow { margin-top: 0; }
   .ledger-row { grid-template-columns: 1fr; grid-template-areas: "title" "body" "tags" "links"; }
   .role { grid-template-columns: 1fr; }
