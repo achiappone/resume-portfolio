@@ -1,72 +1,44 @@
-// src/pages/Projects.tsx
-import { projects } from "../data/projects";
-import {
-  Box,
-  Card,
-  CardContent,
-  CardActions,
-  Typography,
-  Chip,
-  Stack,
-  Button,
-} from "@mui/material";
+import { projects, type Project } from "../data/projects";
+
+const GROUPS: { label: Project["label"]; title: string; note: string }[] = [
+  { label: "Professional", title: "Professional work", note: "Built at Chauvet Professional. The code is proprietary, so it is described here and not linked." },
+  { label: "Personal", title: "Personal projects", note: "Open source on GitHub." },
+  { label: "Hobby", title: "Hobby", note: "" },
+];
 
 export default function Projects() {
   return (
-    <Box sx={{ maxWidth: 1100, mx: "auto" }}>
-      <Box
-        sx={{
-          display: "grid",
-          gap: 2,
-          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-          alignItems: "stretch",
-        }}
-      >
-        {projects.map((p) => (
-          <Card
-            key={p.title}
-            sx={{
-              height: "100%",
-              background: "background.paper",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
-            }}
-          >
-            <CardContent>
-              <Chip
-                label={p.label}
-                size="small"
-                color={p.label === "Professional" ? "primary" : "default"}
-                sx={{ mb: 1 }}
-              />
-              <Typography variant="h6">{p.title}</Typography>
-              <Typography sx={{ mt: 1, mb: 1 }} color="text.secondary">
-                {p.description}
-              </Typography>
-              <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
-                {p.stack.map((s: string) => (
-                  <Chip key={s} label={s} size="small" variant="outlined" />
-                ))}
-              </Stack>
-            </CardContent>
-            <CardActions sx={{ pt: 0 }}>
-              {p.repo ? (
-                <Button size="small" href={p.repo} target="_blank" rel="noreferrer">
-                  GitHub
-                </Button>
-              ) : (
-                <Typography variant="caption" color="text.secondary" sx={{ px: 1 }}>
-                  Proprietary, code not public
-                </Typography>
-              )}
-              {!!p.live && (
-                <Button size="small" href={p.live} target="_blank" rel="noreferrer">
-                  Live Link
-                </Button>
-              )}
-            </CardActions>
-          </Card>
-        ))}
-      </Box>
-    </Box>
+    <>
+      <header className="page-head">
+        <h1 className="display display-sm">Work</h1>
+        <p className="page-lede">Software for professional lighting at work, and hardware-adjacent projects on my own time.</p>
+      </header>
+
+      {GROUPS.map((g) => {
+        const items = projects.filter((p) => p.label === g.label);
+        if (!items.length) return null;
+        return (
+          <section key={g.label} className="ledger" aria-labelledby={`g-${g.label}`}>
+            <div className="section-head">
+              <h2 id={`g-${g.label}`} className="section-title">{g.title}</h2>
+              {g.note && <p className="section-note">{g.note}</p>}
+            </div>
+            <ul className="ledger-list">
+              {items.map((p) => (
+                <li key={p.title} className="ledger-row">
+                  <h3 className="ledger-title">{p.title}</h3>
+                  <p className="ledger-body">{p.description}</p>
+                  <ul className="tags">{p.stack.map((s) => <li key={s}>{s}</li>)}</ul>
+                  <div className="ledger-links">
+                    {p.repo && <a href={p.repo} target="_blank" rel="noreferrer">Code</a>}
+                    {p.live && <a href={p.live} target="_blank" rel="noreferrer">Live</a>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
+    </>
   );
 }

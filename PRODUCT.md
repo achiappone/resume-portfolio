@@ -35,6 +35,7 @@ Fifteen years inside professional lighting (Chauvet Professional), moving from t
 
 ## Evidence on Hand
 - 35 merged PRs on the NFC/BLE fixture app; co-developed RDM support (fixture-control app + SBC wireless DMX gateway); front-end UI and QA on the lighting-control system designer.
+- Office Lighting: personal project (repo pd_lighting, private until its history rewrite is pushed); the user asked for it to be referenced.
 - Public repos: DMX_Haze_Regulator, k2plus-dashboard, pve-stack, openMarineChipAjoi, k2_esp32_cam, NVWAPP, helm-design (hobby).
 - Headshot: `src/assets/profileImage.jpg`.
 - No testimonials, metrics dashboards, client logos or employer screenshots exist; do not fabricate any.

@@ -35,6 +35,15 @@ export const projects: Project[] = [
     stack: ["React", "TypeScript", "Vite"],
   },
   {
+    title: "Office Lighting",
+    label: "Personal",
+    description:
+      "Web app that runs an office lighting rig from any phone or laptop, beside the lighting console: executors and " +
+      "faders over OSC, saved looks recorded as console cues, fixture management over RDM, and a throttled sign-in. " +
+      "Private repository for now.",
+    stack: ["React", "TypeScript", "Node.js", "OSC", "RDM", "Art-Net"],
+  },
+  {
     title: "Particle Analyzer & Doser",
     label: "Personal",
     description:

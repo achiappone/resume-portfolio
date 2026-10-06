@@ -12,10 +12,6 @@
     "deploy": "npm run build && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\" && gh-pages -d dist -b gh-pages"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.2",
-    "@mui/material": "^7.3.2",
     "pdfmake": "^0.2.20",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

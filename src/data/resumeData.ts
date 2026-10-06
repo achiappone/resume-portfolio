@@ -61,5 +61,5 @@ export const resumeData = {
     { name: "OpenMarine Pi", bullets: ["Raspberry Pi boat computer: Signal K, NMEA 2000 over CAN, configuration deployed with Ansible."] },
     { name: "NVWAPP", bullets: ["React Native LED video-wall planner generating PDF drawings and bill of materials."] }
   ],
-  education: [{ school: "B.S., Engineering", details: "Devry University" }]
+  education: [{ school: "B.S., Engineering", details: "DeVry University" }]
 };

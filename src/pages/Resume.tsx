@@ -1,120 +1,61 @@
-import { Box, Button, Typography, Stack, Chip } from "@mui/material";
-import type { Content, TDocumentDefinitions } from "pdfmake/interfaces";
+import { useState } from "react";
 import { resumeData } from "../data/resumeData";
-
-type PdfMake = typeof import("pdfmake/build/pdfmake");
-type Interop<T> = T & { default?: T };
+import { downloadPdf, previewPdf } from "../lib/resumePdf";
+import { DownloadIcon, EyeIcon } from "../components/Icons";
 
 export default function Resume() {
-  const buildDoc = (): TDocumentDefinitions => ({
-    content: [
-      { text: resumeData.name, style: "name" },
-      { text: `${resumeData.title} • ${resumeData.location} • ${resumeData.email}`, margin: [0, 0, 0, 12] },
-      { text: resumeData.summary, style: "summary", margin: [0, 0, 0, 16] },
-      { text: "Skills", style: "h2" },
-      { ul: resumeData.skills, margin: [0, 0, 0, 14] },
-      { text: "Experience", style: "h2" },
-      ...resumeData.experience.flatMap((exp): Content[] => [
-        { text: `${exp.role} — ${exp.company} (${exp.dates})`, bold: true, margin: [0, 6, 0, 2] },
-        { ul: exp.bullets, margin: [0, 0, 0, 10] }
-      ]),
-      { text: "Projects", style: "h2" },
-      ...resumeData.projects.flatMap((p): Content[] => [
-        { text: p.name, bold: true, margin: [0, 6, 0, 2] },
-        { ul: p.bullets, margin: [0, 0, 0, 10] }
-      ]),
-      { text: "Education", style: "h2" },
-      ...resumeData.education.map((e): Content => ({ text: `${e.school} — ${e.details}`, margin: [0, 2, 0, 2] }))
-    ],
-    styles: {
-      name: { fontSize: 20, bold: true, margin: [0, 0, 0, 8] },
-      h2: { fontSize: 14, bold: true, margin: [0, 14, 0, 6] },
-      summary: { fontSize: 10, lineHeight: 1.6 }
-    },
-    defaultStyle: { fontSize: 10 }
-  });
-
-  const loadPdfMake = async () => {
-    const pdfMakeModule = await import("pdfmake/build/pdfmake");
-    const pdfFontsModule = await import("pdfmake/build/vfs_fonts");
-    // CJS/ESM interop: Vite may hand back either the module or { default: module }
-    const pdfMake = (pdfMakeModule as Interop<PdfMake>).default ?? pdfMakeModule;
-    const fonts = pdfFontsModule as Interop<{ pdfMake?: { vfs: PdfMake["vfs"] }; vfs?: PdfMake["vfs"] }>;
-    const f = fonts.default ?? fonts;
-    pdfMake.vfs = f.pdfMake ? f.pdfMake.vfs : f.vfs!;
-    return pdfMake;
-  };
-
-  const downloadPdf = async () => {
-    const pdfMake = await loadPdfMake();
-    pdfMake.createPdf(buildDoc()).download("Anthony_Chiappone_Resume.pdf");
-  };
-
-  const previewPdf = async () => {
-    const win = window.open("", "_blank");
-    if (!win) {
-      alert("Please allow popups to preview the PDF.");
-      return;
-    }
-    try {
-      const pdfMake = await loadPdfMake();
-      pdfMake.createPdf(buildDoc()).open({}, win);
-    } catch {
-      try {
-        const pdfMake = await loadPdfMake();
-        pdfMake.createPdf(buildDoc()).getBlob((blob: Blob) => {
-          const url = URL.createObjectURL(blob);
-          win.location = url;
-        });
-      } catch {
-        win.close();
-        alert("Could not preview the PDF.");
-      }
-    }
-  };
+  const [error, setError] = useState("");
+  const download = () => { setError(""); downloadPdf().catch(() => setError("The PDF couldn't be generated. Try again in a moment.")); };
+  const preview = async () => { setError(""); setError((await previewPdf()) ?? ""); };
 
   return (
-    <Box sx={{ maxWidth: 1000, mx: "auto", p: 2 }}>
-      <Stack spacing={3} alignItems="flex-start">
-        {/* Header */}
-        <Typography variant="h4" gutterBottom sx={{ mb: 0 }}>
-          Resume
-        </Typography>
+    <>
+      <header className="page-head page-head-split">
+        <div>
+          <h1 className="display display-sm">Résumé</h1>
+          <p className="page-lede">{resumeData.title} · {resumeData.location}</p>
+        </div>
+        <div className="actions">
+          <button type="button" className="btn btn-primary" onClick={download}><DownloadIcon />Download PDF</button>
+          <button type="button" className="btn" onClick={preview}><EyeIcon />Preview</button>
+          {error && <p className="form-error" role="alert">{error}</p>}
+        </div>
+      </header>
 
-        {/* Summary */}
-        <Typography sx={{ lineHeight: 1.75 }}>
-          {resumeData.summary}
-        </Typography>
+      <p className="summary">{resumeData.summary}</p>
 
-        {/* Skills Chips */}
-        <Stack
-          direction="row"
-          flexWrap="wrap"
-          useFlexGap
-          gap={1.25}      // horizontal gap
-          rowGap={1.25}   // vertical gap between chip rows
-        >
-          {resumeData.skills.map((s) => (
-            <Chip key={s} label={s} />
+      <section className="resume-block" aria-labelledby="exp-h">
+        <h2 id="exp-h" className="section-title">Experience</h2>
+        <ol className="roles">
+          {resumeData.experience.map((e) => (
+            <li key={e.role} className="role">
+              <div className="role-head">
+                <h3>{e.role}</h3>
+                <span className="role-meta">{e.company} · {e.dates}</span>
+              </div>
+              <ul className="role-bullets">{e.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
+            </li>
           ))}
-        </Stack>
+        </ol>
+      </section>
 
-        {/* Action Buttons */}
-        <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-          <Button
-            variant="contained"
-            onClick={() => downloadPdf().catch(console.error)}
-          >
-            Download PDF
-          </Button>
-          <Button
-            variant="outlined"
-            onClick={() => previewPdf().catch(console.error)}
-          >
-            Preview PDF
-          </Button>
-        </Stack>
-      </Stack>
-    </Box>
+      <div className="resume-cols">
+        <section className="resume-block" aria-labelledby="skills-h">
+          <h2 id="skills-h" className="section-title">Skills</h2>
+          <ul className="tags tags-lg">{resumeData.skills.map((s) => <li key={s}>{s}</li>)}</ul>
+        </section>
+        <section className="resume-block" aria-labelledby="edu-h">
+          <h2 id="edu-h" className="section-title">Education</h2>
+          {resumeData.education.map((e) => <p key={e.school} className="edu"><strong>{e.school}</strong> · {e.details}</p>)}
+        </section>
+      </div>
+
+      <section className="resume-block" aria-labelledby="proj-h">
+        <h2 id="proj-h" className="section-title">Selected projects</h2>
+        <ul className="role-bullets">
+          {resumeData.projects.map((p) => <li key={p.name}><strong>{p.name}.</strong> {p.bullets.join(" ")}</li>)}
+        </ul>
+      </section>
+    </>
   );
 }
