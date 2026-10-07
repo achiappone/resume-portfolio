@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SignalFlow from "../components/SignalFlow";
+import EngineeringTrack from "../components/EngineeringTrack";
 import { ArrowIcon, DownloadIcon, GitHubIcon } from "../components/Icons";
 import { downloadPdf } from "../lib/resumePdf";
 import { resumeData } from "../data/resumeData";
@@ -45,6 +46,7 @@ export default function Home() {
             </li>
           ))}
         </ol>
+        <EngineeringTrack />
       </section>
     </>
   );

@@ -173,6 +173,27 @@ button { font: inherit; color: inherit; }
 .path-role { font-weight: 600; font-size: 17px; }
 .path-co { color: var(--ink-2); font-size: 14px; }
 
+/* Engineering track: three bars on one time axis, each starting later and burning hotter. */
+.track { margin-top: var(--s-6); display: grid; gap: var(--s-3); }
+.track-title { font: 700 15px/1.3 var(--f-body); }
+.track-title span { font-weight: 500; color: var(--muted); margin-left: var(--s-2); font-variant-numeric: tabular-nums; }
+.track-bars { display: grid; gap: var(--s-3); }
+.track-bar { display: grid; gap: 6px; }
+.track-label { font-size: 14px; }
+.track-label strong { font-weight: 600; }
+.track-label span { color: var(--muted); }
+.track-fill { position: relative; height: 8px; border-radius: 4px; background: var(--rule-soft); }
+.track-fill::before { content: ""; position: absolute; inset: 0 0 0 var(--start); border-radius: 4px; }
+.level-1 .track-fill::before { background: var(--dmx); opacity: .55; }
+.level-2 .track-fill::before { background: linear-gradient(90deg, var(--dmx), var(--hot)); }
+.level-3 .track-fill::before { background: var(--hot); box-shadow: 0 0 14px -2px var(--hot); }
+.level-3 .track-fill::after { content: ""; position: absolute; right: -2px; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px var(--hot); }
+@media (prefers-reduced-motion: no-preference) { .level-3 .track-fill::after { animation: now 1.8s ease-in-out infinite; } }
+@keyframes now { 50% { box-shadow: 0 0 2px var(--hot); } }
+.track-axis { position: relative; height: 18px; border-top: 1px solid var(--rule); }
+.track-axis span { position: absolute; top: 4px; transform: translateX(-50%); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.track-axis span:first-child { transform: none; }
+
 /* ---------- work ledger ---------- */
 .ledger-list { border-top: 1px solid var(--rule); }
 .ledger-row { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) auto; grid-template-areas: "title body links" "title tags links"; gap: var(--s-3) var(--s-6); padding-block: var(--s-5); border-bottom: 1px solid var(--rule); }
@@ -223,6 +244,8 @@ button { font: inherit; color: inherit; }
   .path-list { grid-template-columns: 1fr; border-top: 0; border-left: 2px solid var(--rule); padding-left: var(--s-4); }
   .path-list li { padding: 0 0 var(--s-4); }
   .path-list li::before { top: 6px; left: calc(var(--s-4) * -1 - 7px); }
+  .track-label span { display: block; }
+  .track-axis span:nth-child(even) { display: none; }
 }
 /* Below 760px the drawing gets too small to read, so the system becomes a vertical chain. */
 @media (max-width: 760px) {
