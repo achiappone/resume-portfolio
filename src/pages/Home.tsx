@@ -1,16 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import SignalFlow from "../components/SignalFlow";
 import EngineeringTrack from "../components/EngineeringTrack";
-import { ArrowIcon, DownloadIcon, GitHubIcon } from "../components/Icons";
-import { downloadPdf } from "../lib/resumePdf";
+import { ArrowIcon, GitHubIcon } from "../components/Icons";
 import { resumeData } from "../data/resumeData";
 import Headshot from "../components/Headshot";
 
 export default function Home() {
-  const [pdfError, setPdfError] = useState("");
-  const download = () => { setPdfError(""); downloadPdf().catch(() => setPdfError("The résumé couldn't be generated. Try again, or view it on the Résumé page.")); };
-
   return (
     <>
       <section className="hero">
@@ -24,9 +19,7 @@ export default function Home() {
           </p>
         </div>
         <div className="actions">
-          <button type="button" className="btn btn-primary" onClick={download}><DownloadIcon />Download résumé</button>
-          <a className="btn" href="https://github.com/achiappone" target="_blank" rel="noreferrer"><GitHubIcon />GitHub</a>
-          {pdfError && <p className="form-error" role="alert">{pdfError}</p>}
+          <a className="btn btn-primary" href="https://github.com/achiappone" target="_blank" rel="noreferrer"><GitHubIcon />GitHub</a>
         </div>
       </section>
 

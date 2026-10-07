@@ -19,7 +19,7 @@ export default function PortfolioLayout() {
       <header className="topbar">
         <NavLink to="/" viewTransition className="brand" aria-label="Anthony Chiappone, home">A. Chiappone</NavLink>
         <nav className="nav" aria-label="Main">
-          <NavLink to="/" end viewTransition>System</NavLink>
+          <NavLink to="/" end viewTransition>About</NavLink>
           <NavLink to="/projects" viewTransition>Work</NavLink>
           <NavLink to="/resume" viewTransition>Résumé</NavLink>
         </nav>
