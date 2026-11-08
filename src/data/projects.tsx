@@ -57,7 +57,7 @@ export const projects: Project[] = [
     label: "Personal",
     description:
       "Read-only proxy dashboard for a Klipper/Moonraker 3D printer: live temperatures, progress, and an " +
-      "in-browser WebRTC camera negotiation. Python standard library only.",
+      "in-browser WebRTC camera negotiation. Dashboard UI designed and built from scratch; Python standard library only.",
     stack: ["Python", "JavaScript", "WebRTC"],
     repo: "https://github.com/achiappone/k2plus-dashboard",
   },
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     label: "Personal",
     description:
       "Remote and performance monitoring for a self-hosted development server: live host metrics, service " +
-      "health, camera feeds, one-click deploys and automatic network failover.",
+      "health, camera feeds, one-click deploys and automatic network failover, in a dashboard UI I designed and built.",
     stack: ["TypeScript", "Python", "Bash", "systemd", "Proxmox"],
     repo: "https://github.com/achiappone/pve-stack",
   },

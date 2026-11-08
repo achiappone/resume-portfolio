@@ -6,7 +6,7 @@ export const resumeData = {
   summary:
     "Software engineer and senior product manager with 15 years in professional lighting and control systems. I build software that talks to hardware: React Native apps that configure fixtures over BLE and NFC, RDM/DMX protocol work, ESP32 firmware, and the web tools and infrastructure around them.",
   skills: [
-    "TypeScript", "React", "React Native", "Node.js", "MobX-State-Tree", "Python", "C/C++ (ESP32)", "C#",
+    "TypeScript", "React", "React Native", "Dashboard & Front-End UI Design", "Node.js", "MobX-State-Tree", "Python", "C/C++ (ESP32)", "C#",
     "DMX512 / RDM / Art-Net / sACN", "BLE / NFC", "GitHub Actions / CI", "Linux / Proxmox / systemd",
     "Product Management", "Agile Delivery", "Technical Writing"
   ],
@@ -56,8 +56,8 @@ export const resumeData = {
   ],
   projects: [
     { name: "Particle Analyzer & Doser", bullets: ["ESP32-S3 closed-loop control: PM2.5 particle sensor over I2C drives DMX512 dosing output; web UI, OTA, watchdog."] },
-    { name: "K2 Plus Dashboard", bullets: ["Stdlib-only Python proxy dashboard for Klipper/Moonraker with in-browser WebRTC camera negotiation."] },
-    { name: "Development Dashboard", bullets: ["Remote and performance monitoring for a self-hosted dev server: live host metrics, service health, camera feeds, one-click deploys, network failover."] },
+    { name: "K2 Plus Dashboard", bullets: ["Designed and built a stdlib-only Python proxy dashboard for Klipper/Moonraker with in-browser WebRTC camera negotiation."] },
+    { name: "Development Dashboard", bullets: ["Designed and built the dashboard UI for remote and performance monitoring of a self-hosted dev server: live host metrics, service health, camera feeds, one-click deploys, network failover."] },
     { name: "OpenMarine Pi", bullets: ["Raspberry Pi boat computer: Signal K, NMEA 2000 over CAN, configuration deployed with Ansible."] },
     { name: "NVWAPP", bullets: ["React Native LED video-wall planner generating PDF drawings and bill of materials."] }
   ],
