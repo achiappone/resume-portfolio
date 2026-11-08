@@ -16,7 +16,7 @@ export const resumeData = {
       company: "Chauvet Professional",
       dates: "2019–Present",
       bullets: [
-        "Writing and debugging code in the product codebases alongside the engineering team since June 2022.",
+        "Writing and debugging code in the product codebases alongside the engineering team since June 2021.",
         "Engineer on an NFC/BLE fixture-configuration app (React Native, iOS and Android): 35 merged PRs covering NFC tag memory mapping, BLE firmware updates with verification, diagnostics reporting, secured job data and platform parity.",
         "Co-developed RDM (ANSI E1.20) support for a fixture-control app and its SBC-based wireless DMX gateway; front-end UI design and QA test planning.",
         "Front-end UI and QA for a lighting-control system designer, a sales-enablement web tool for drawing complete system diagrams.",
@@ -65,8 +65,8 @@ export const resumeData = {
   // Hands-on software work inside the senior PM years, most intense last. Shown on the home career path.
   engineeringTrack: [
     { label: "Algorithm development", detail: "Designing algorithms with the software team", start: "2019-01" },
-    { label: "Writing and debugging code", detail: "Hands-on in the product codebases every day", start: "2022-06" },
-    { label: "Building my own software", detail: "Apps, firmware and infrastructure, end to end", start: "2024-01" },
+    { label: "Writing and debugging code", detail: "Hands-on in the product codebases every day", start: "2021-06" },
+    { label: "Building my own software", detail: "Apps, firmware and infrastructure, end to end", start: "2023-01" },
   ],
   education: [{ school: "B.S., Engineering", details: "DeVry University" }]
 };
