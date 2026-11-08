@@ -64,7 +64,7 @@ export const resumeData = {
   // Hands-on software work inside the senior PM years, most intense last. Shown on the home career path.
   engineeringTrack: [
     { label: "Algorithm development", detail: "Designing algorithms with the software team", start: "2019-01" },
-    { label: "Writing and debugging code", detail: "Hands-on in the product codebases every day", start: "2025-04" },
+    { label: "Writing and debugging code", detail: "Hands-on in the product codebases every day", start: "2023-10" },
     { label: "Building my own software", detail: "Apps, firmware and infrastructure, end to end", start: "2026-01" },
   ],
   education: [{ school: "B.S., Engineering", details: "DeVry University" }]
