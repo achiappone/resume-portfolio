@@ -1,10 +1,10 @@
 import type { CSSProperties } from "react";
 import { resumeData } from "../data/resumeData";
 
-const FROM = 2019;
+const FROM = 2015;
 const toYear = (ym: string) => { const [y, m] = ym.split("-").map(Number); return y + (m - 1) / 12; };
 
-// The software side of the career, on a real time scale from 2019 to today:
+// The software side of the career, on a real time scale from 2015 to today:
 // each phase starts later and runs hotter, like a signal level rising.
 export default function EngineeringTrack() {
   const now = new Date();
@@ -15,7 +15,7 @@ export default function EngineeringTrack() {
 
   return (
     <div className="track" aria-labelledby="track-h">
-      <h3 id="track-h" className="track-title">Engineering track <span>2019 – now</span></h3>
+      <h3 id="track-h" className="track-title">Engineering track <span>{FROM} – now</span></h3>
       <ol className="track-bars">
         {resumeData.engineeringTrack.map((p, i) => (
           <li key={p.label} className={`track-bar level-${i + 1}`} style={{ "--start": `${pct(toYear(p.start))}%` } as CSSProperties}>
