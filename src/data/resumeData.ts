@@ -66,7 +66,7 @@ export const resumeData = {
   engineeringTrack: [
     { label: "Algorithm development", detail: "Designing algorithms with the software team", start: "2019-01" },
     { label: "Writing and debugging code", detail: "Hands-on in the product codebases every day", start: "2022-06" },
-    { label: "Building my own software", detail: "Apps, firmware and infrastructure, end to end", start: "2026-01" },
+    { label: "Building my own software", detail: "Apps, firmware and infrastructure, end to end", start: "2024-01" },
   ],
   education: [{ school: "B.S., Engineering", details: "DeVry University" }]
 };
